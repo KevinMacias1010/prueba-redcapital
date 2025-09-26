@@ -58,7 +58,7 @@ class PasswordResetController extends Controller
             'password.confirmed' => 'Las contraseñas no coinciden.'
         ]);
 
-        $status = Password::reset(
+        $status = Password::broker('usuarios')->reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
                 $user->forceFill([
